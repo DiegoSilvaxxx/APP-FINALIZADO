@@ -9,19 +9,25 @@
   <div>
     <img src="../../assets/imagens/logo.png" class="logo">
 
-    <ion-item>
-      <ion-label position="floating">Username ou Email</ion-label>
-      <ion-input #email></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label position="floating">Username ou Email</ion-label>
+        <ion-input #email></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Senha</ion-label>
-      <ion-input #senha></ion-input>
-    </ion-item>
-    
-    <ion-button expand="default" color="tertiary" (click)="logar()">LOGAR</ion-button>
-    <br>
-    <ion-button expand="default" color="dark" (click)="cadastrar()">CADASTRAR</ion-button>
+      <ion-item>
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input #senha></ion-input>
+      </ion-item>
+        
+      <ion-button expand="default" color="tertiary" (click)="logar()">LOGAR</ion-button>
+      <br>
+      <ion-button expand="default" color="dark" (click)="cadastrar()">CADASTRAR</ion-button>
+
+      <hr>ou<hr>
+
+      <ion-button expand="large" color="primary" (click)="logar()">LOGIN PELO FACEBOOK</ion-button>
+      <br>
+      <ion-button expand="large" color="danger" (click)="logar()">LOGIN PELO GOOGLE</ion-button>
   </div>
 
 </ion-content>
