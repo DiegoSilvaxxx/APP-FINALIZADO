@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+      <ion-title>ListaDeNutricionistas</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+      <ion-card  *ngFor="let nutricionista of listaDeNutricionistas">
+          <ion-card-header>
+            <img src="{{nutricionista?.imagem}}">
+            <ion-card-title>{{nutricionista?.nome}}</ion-card-title>
+            <ion-card-subtitle>{{nutricionista?.endereco}}</ion-card-subtitle>
+            <ion-card-subtitle>{{nutricionista?.telefone}}</ion-card-subtitle>
+            <ion-card-subtitle>{{nutricionista?.email}}</ion-card-subtitle>
+          </ion-card-header>
+  
+          <ion-icon name="share-alt" (click)="viewNutricionista(nutricionista)"  size="large"></ion-icon>
+          <ion-icon name="trash" (click)="remove(nutricionista)"  size="large"></ion-icon>
+  
+        </ion-card>
+       
+        
+  </ion-content>
+  

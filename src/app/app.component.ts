@@ -28,13 +28,13 @@ export class AppComponent {
       icon: 'logoff'
     },
     {
-      title: 'Lista de Clientes',
-      url: '/lista-de-clientes',
+      title: 'Cadastro de Nutricionista',
+      url: '/cadastro-de-nutricionista',
       icon: 'body'
     },
     {
-      title: 'Cadastro de Clientes',
-      url: '/cadastro-de-cliente',
+      title: 'Lista de Nutricionistas',
+      url: '/lista-de-nutricionistas',
       icon: 'book'
     }
   ];
