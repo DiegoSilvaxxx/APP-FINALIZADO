@@ -53,6 +53,10 @@ export class ListaDeNutricionistasPage implements OnInit {
       })
   }
 
+  Home() {
+    this.router.navigate(['/list']);
+  }
+
 
   async presentLoading() {
     const loading = await this.loadingController.create({

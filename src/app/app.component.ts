@@ -25,7 +25,7 @@ export class AppComponent {
     {
       title: 'Logoff',
       url: '/logoff',
-      icon: 'logoff'
+      icon: 'md-exit'
     },
     {
       title: 'Cadastro de Nutricionista',

@@ -13,6 +13,7 @@ import {AngularFireModule } from '@angular/fire';
 import {AngularFireAuth } from 'angularfire2/auth';
 import {AngularFirestoreModule } from 'angularfire2/firestore';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,8 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    IonicStorageModule.forRoot()
   ],
   providers: [
     StatusBar,

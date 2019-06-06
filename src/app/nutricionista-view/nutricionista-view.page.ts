@@ -38,6 +38,7 @@ export class NutricionistaViewPage implements OnInit {
   }
 
   ngOnInit() {
+    this.downloadFoto();
     this.obterCliente();
   }
 
