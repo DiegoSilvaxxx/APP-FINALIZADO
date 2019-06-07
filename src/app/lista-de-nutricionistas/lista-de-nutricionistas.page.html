@@ -1,41 +1,35 @@
 <ion-header>
   <ion-toolbar color="dark">
-    
 
-      <ion-icon (click)="Home()" slot="start" name="arrow-back" class="iconeconf"></ion-icon>
-      <ion-icon slot="start" name="contact" class="iconeconf"></ion-icon>
+    <ion-icon (click)="Home()" slot="start" name="arrow-back" class="iconeconf"></ion-icon>
+    <ion-icon slot="start" name="contact" class="iconeconf"></ion-icon>
 
-      <div class="div2">
-        <ion-title>
-          <img src="../../assets/imagens/logo2.png" class="logo">
-        </ion-title>
-      </div>
+    <div class="div2">
+      <ion-title>
+        <img src="../../assets/imagens/logo2.png" class="logo">
+      </ion-title>
+    </div>
 
-      <ion-buttons slot="end">
-        <ion-menu-button></ion-menu-button>
-        <ion-icon slot="end" name="more" class="iconeconf"></ion-icon>
-      </ion-buttons>
-    
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+      <ion-icon slot="end" name="more" class="iconeconf"></ion-icon>
+    </ion-buttons>
 
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <div>
-  <ion-card *ngFor="let nutricionista of listaDeNutricionistas">
-    <ion-card-header>
+  <ion-toolbar color="success">
+    <ion-title>Nutricionistas</ion-title>
+  </ion-toolbar>
+
+  <ion-item *ngFor="let nutricionista of listaDeNutricionistas">
+    <ion-thumbnail slot="start" (click)="perfilNutri(nutricionista)">
       <img src="{{nutricionista?.imagem}}">
-      <ion-card-title>{{nutricionista?.nome}}</ion-card-title>
-      <ion-card-subtitle>{{nutricionista?.endereco}}</ion-card-subtitle>
-      <ion-card-subtitle>{{nutricionista?.telefone}}</ion-card-subtitle>
-      <ion-card-subtitle>{{nutricionista?.email}}</ion-card-subtitle>
-    </ion-card-header>
-
-    <ion-icon name="ios-build" (click)="viewNutricionista(nutricionista)" size="large"></ion-icon>
-    <ion-icon name="trash" (click)="remove(nutricionista)" size="large"></ion-icon>
-
-  </ion-card>
-  </div>
-
+    </ion-thumbnail>
+    <ion-label>
+      <ion-title>{{nutricionista?.nome}}</ion-title>
+      <p>{{nutricionista?.telefone}}</p>
+    </ion-label>
+  </ion-item>
 
 </ion-content>

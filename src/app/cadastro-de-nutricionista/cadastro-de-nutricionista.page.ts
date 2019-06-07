@@ -41,5 +41,9 @@ export class CadastroDeNutricionistaPage implements OnInit {
       })
     }
 
+  Home() {
+    this.router.navigate(['/list']);
+  }
+
   }
 

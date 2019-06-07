@@ -29,6 +29,10 @@ export class ListaDeNutricionistasPage implements OnInit {
     this.presentLoading();
   }
 
+  perfilNutri(obj: Nutricionista) {
+    this.router.navigate(['/perfil-nutri', { 'nutricionista': obj.id }]);
+  }
+
   getList() {
     var ref = firebase.firestore().collection("nutricionista");
     ref.get().then(query => {

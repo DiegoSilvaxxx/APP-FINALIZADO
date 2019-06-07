@@ -13,14 +13,9 @@ import { Router } from '@angular/router';
 export class AppComponent {
   public appPages = [
     {
-      title: 'Home',
-      url: '/home',
-      icon: 'home'
-    },
-    {
-      title: 'List',
+      title: 'home',
       url: '/list',
-      icon: 'list'
+      icon: 'home'
     },
     {
       title: 'Logoff',

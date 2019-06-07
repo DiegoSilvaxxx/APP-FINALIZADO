@@ -39,10 +39,10 @@ export class NutricionistaViewPage implements OnInit {
 
   ngOnInit() {
     this.downloadFoto();
-    this.obterCliente();
+    this.obterNutricionista();
   }
 
-  obterCliente() {
+  obterNutricionista() {
     var ref = firebase.firestore().collection("nutricionista").doc(this.id);
 
     ref.get().then(doc => {
