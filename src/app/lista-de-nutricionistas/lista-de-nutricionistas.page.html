@@ -12,7 +12,6 @@
 
     <ion-buttons slot="end">
       <ion-menu-button></ion-menu-button>
-      <ion-icon slot="end" name="more" class="iconeconf"></ion-icon>
     </ion-buttons>
 
   </ion-toolbar>
@@ -20,13 +19,15 @@
 <ion-content>
   <ion-toolbar color="success">
     <ion-title>Nutricionistas</ion-title>
+    <ion-icon slot="end" name="search" class="iconeconf2"></ion-icon>
+    <ion-icon slot="end" name="more" class="iconeconf"></ion-icon>
   </ion-toolbar>
 
   <ion-item *ngFor="let nutricionista of listaDeNutricionistas">
     <ion-thumbnail slot="start" (click)="perfilNutri(nutricionista)">
-      <img src="{{nutricionista?.imagem}}">
+      <img src="../../assets/imagens/perfil usuario.png">
     </ion-thumbnail>
-    <ion-label>
+    <ion-label (click)="Chat()">
       <ion-title>{{nutricionista?.nome}}</ion-title>
       <p>{{nutricionista?.telefone}}</p>
     </ion-label>

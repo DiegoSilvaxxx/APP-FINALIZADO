@@ -1,5 +1,6 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="success">
+    <ion-icon (click)="Home()" slot="start" name="arrow-back" class="iconeconf"></ion-icon>
     <ion-title>Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -7,15 +8,15 @@
 <ion-content>
 
         <div>
-        <ion-card *ngFor="let nutricionista of listaDeNutricionistas">
+        <ion-card>
           <ion-card-header>
-            <img src="{{nutricionista?.imagem}}">
-            <ion-card-title>{{nutricionista?.nome}}</ion-card-title>
-            <ion-card-subtitle>{{nutricionista?.endereco}}</ion-card-subtitle>
-            <ion-card-subtitle>{{nutricionista?.telefone}}</ion-card-subtitle>
-            <ion-card-subtitle>{{nutricionista?.email}}</ion-card-subtitle>
+            <img src="../../assets/imagens/nutricionista.png" class="logo">
+            <ion-card-title>Nome: Brenda Marta</ion-card-title>
+            <ion-card-subtitle>Endereço: Rua 60, 123 Casa2 - Campo Grande</ion-card-subtitle>
+            <ion-card-subtitle>Telefone: 969747745</ion-card-subtitle>
+            <ion-card-subtitle>Email: BrendaMarta@gmail.com</ion-card-subtitle>
             <hr>
-            <ion-button expand="default" color="primary">Enviar mensagem</ion-button>
+            <ion-button expand="default" color="primary" (click)="Chat()">Enviar mensagem</ion-button>
           </ion-card-header>
       
           <ion-icon name="ios-build" (click)="viewNutricionista(nutricionista)" size="large"></ion-icon>

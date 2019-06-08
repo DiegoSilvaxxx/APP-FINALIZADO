@@ -29,6 +29,10 @@ export class ListaDeNutricionistasPage implements OnInit {
     this.presentLoading();
   }
 
+  Chat() {
+    this.router.navigate(['/chat-nutri']);
+  }
+
   perfilNutri(obj: Nutricionista) {
     this.router.navigate(['/perfil-nutri', { 'nutricionista': obj.id }]);
   }

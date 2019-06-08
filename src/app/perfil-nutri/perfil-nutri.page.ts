@@ -40,8 +40,12 @@ export class PerfilNutriPage implements OnInit {
 
   }
 
+  Chat() {
+    this.router.navigate(['/chat-nutri']);
+  }
+
    Home() {
-    this.router.navigate(['/list']);
+    this.router.navigate(['/lista-de-nutricionistas']);
   }
 
 
