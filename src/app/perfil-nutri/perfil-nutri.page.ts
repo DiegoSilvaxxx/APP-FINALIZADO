@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-perfil-nutri',
@@ -12,7 +13,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PerfilNutriPage implements OnInit {
 
-  nutricionista: Nutricionista = new Nutricionista();
+  perfilNutri: Nutricionista = new Nutricionista();
+
   id: string;
   firestore = firebase.firestore();
   settings = { timestampsInSnapshots: true };
@@ -20,9 +22,12 @@ export class PerfilNutriPage implements OnInit {
 
   constructor(public activatedRoute: ActivatedRoute,
     public router: Router,
-    public nav: NavController) {this.id = this.activatedRoute.snapshot.paramMap.get('nutricionista');
+    public nav: NavController,
+    public fire : AngularFireAuth) {
+      //this.id = this.fire.auth.currentUser.uid;
+
+  this.id = this.activatedRoute.snapshot.paramMap.get('nutricionista');
   }
-  
 
   ngOnInit() {
     this.obterPerfil();
@@ -32,7 +37,9 @@ export class PerfilNutriPage implements OnInit {
     var ref = firebase.firestore().collection("nutricionista").doc(this.id);
 
     ref.get().then(doc => {
-      this.nutricionista.setDados(doc.data());
+
+        this.perfilNutri.setDados(doc.data());
+        this.perfilNutri.id = doc.id;
 
     }).catch(function (error) {
       console.log("Error getting document:", error);

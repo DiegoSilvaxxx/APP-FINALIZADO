@@ -5,6 +5,7 @@ export class Nutricionista{
     endereco : string;
     telefone : string;
     email : string;
+    senha : string;
     imagem : string;
 
     constructor(){   
@@ -16,5 +17,6 @@ export class Nutricionista{
         this.endereco = obj.endereco;
         this.telefone = obj.telefone;
         this.email = obj.email;
+        this.senha = obj.senha;
     }
 }

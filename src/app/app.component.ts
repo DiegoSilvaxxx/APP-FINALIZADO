@@ -23,11 +23,6 @@ export class AppComponent {
       icon: 'md-exit'
     },
     {
-      title: 'Cadastro de Nutricionista',
-      url: '/cadastro-de-nutricionista',
-      icon: 'body'
-    },
-    {
       title: 'Lista de Nutricionistas',
       url: '/lista-de-nutricionistas',
       icon: 'book'

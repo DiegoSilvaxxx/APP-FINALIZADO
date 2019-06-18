@@ -1,9 +1,9 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyDlp6UXH4H6drLFJEzb3igxtFkrW-g-oNw",
-  authDomain: "projeto1-dcf58.firebaseapp.com",
-  databaseURL: "https://projeto1-dcf58.firebaseio.com",
-  projectId: "projeto1-dcf58",
-  storageBucket: "projeto1-dcf58.appspot.com",
-  messagingSenderId: "808006972527",
-  appId: "1:808006972527:web:64684d35222f049f"
+  apiKey: "AIzaSyBML3WFo4gxfW29gNEbjVfZBisP47-epTw",
+  authDomain: "projetointegrador-app-47700.firebaseapp.com",
+  databaseURL: "https://projetointegrador-app-47700.firebaseio.com",
+  projectId: "projetointegrador-app-47700",
+  storageBucket: "projetointegrador-app-47700.appspot.com",
+  messagingSenderId: "593159854475",
+  appId: "1:593159854475:web:ff8c727c4def6f21"
 };
