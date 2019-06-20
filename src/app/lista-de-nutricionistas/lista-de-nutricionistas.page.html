@@ -25,7 +25,7 @@
 
   <ion-item *ngFor="let nutricionista of listaDeNutricionistas">
     <ion-thumbnail slot="start" (click)="perfilNutri(nutricionista)">
-      <img src="../../assets/imagens/perfil usuario.png">
+      <img src="{{nutricionista?.imagem}}" class="circle">
     </ion-thumbnail>
     <ion-label (click)="Chat()">
       <ion-title>{{nutricionista?.nome}}</ion-title>
