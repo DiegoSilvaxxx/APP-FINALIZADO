@@ -29,8 +29,8 @@ export class ListaDeNutricionistasPage implements OnInit {
     this.presentLoading();
   }
 
-  Chat() {
-    this.router.navigate(['/chat-nutri']);
+  Chat(obj: Nutricionista) {
+    this.router.navigate(['/chat-nutri', { 'nutricionista': obj.id }]);
   }
 
   perfilNutri(obj: Nutricionista) {
@@ -38,7 +38,8 @@ export class ListaDeNutricionistasPage implements OnInit {
   }
 
   getList() {
-    var ref = firebase.firestore().collection("nutricionista");
+    var ref = firebase.firestore().collection("nutricionista")
+    
     ref.get().then(query => {
       query.forEach(doc => {
         let c = new Nutricionista();

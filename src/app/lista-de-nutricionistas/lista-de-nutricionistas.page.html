@@ -27,7 +27,7 @@
     <ion-thumbnail slot="start" (click)="perfilNutri(nutricionista)">
       <img src="{{nutricionista?.imagem}}" class="circle">
     </ion-thumbnail>
-    <ion-label (click)="Chat()">
+    <ion-label (click)="Chat(nutricionista)">
       <ion-title>{{nutricionista?.nome}}</ion-title>
       <p>{{nutricionista?.telefone}}</p>
     </ion-label>
