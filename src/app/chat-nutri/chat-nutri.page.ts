@@ -6,6 +6,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
+import { Mensagem } from '../model/mensagem';
 
 @Component({
   selector: 'app-chat-nutri',
@@ -13,10 +14,13 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./chat-nutri.page.scss'],
 })
 export class ChatNutriPage implements OnInit {
+
   idNutricionista : string;
   idUsuario : string;
   firestore = firebase.firestore();
   settings = {timestampsInSnapshots: true};
+
+  conversa : Mensagem[] = [];
 
   formGroup : FormGroup;
   @ViewChild('txtarea') txtarea;
@@ -28,27 +32,54 @@ export class ChatNutriPage implements OnInit {
     public firebaseauth : AngularFireAuth,
     private formBuilder : FormBuilder, ) {
 
-      
-
       this.idNutricionista = this.activatedRoute.snapshot.paramMap.get('nutricionista');
      
 
       this.firebaseauth.authState.subscribe(obj=>{
         this.idUsuario = this.firebaseauth.auth.currentUser.uid;
 
-        let ref = this.firestore.doc('mensagem/'+this.idUsuario).collection(this.idNutricionista);
-        ref.onSnapshot(doc=> {
-            console.log(doc.size);
-        });
+        
   
       });
 
     }
 
   ngOnInit() {
+
+    
+
+    let ref = this.firestore.doc('mensagem/'+this.idUsuario).collection(this.idNutricionista);
+        ref.onSnapshot(doc=> {
+
+          doc.docChanges().forEach(c =>{
+            let m = new Mensagem();
+            m.setDados(c.doc.data());
+            this.conversa.push(m);
+          })
+
+         
+        });
+
+    
   }
 
 
+
+  atualiza(){
+    let ref = this.firestore.doc('mensagem/'+this.idUsuario).collection(this.idNutricionista);
+    ref.get().then(doc =>{
+      doc.forEach(c=>{
+        
+       let m = new Mensagem();
+        m.setDados(c.data());
+        this.conversa.push(m);
+        
+      })
+      
+    })
+
+
+  }
 
   enviarMensagem(){
 
