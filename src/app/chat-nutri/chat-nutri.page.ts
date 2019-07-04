@@ -37,7 +37,7 @@ export class ChatNutriPage implements OnInit {
 
       this.firebaseauth.authState.subscribe(obj=>{
         this.idUsuario = this.firebaseauth.auth.currentUser.uid;
-
+        console.log(this.idUsuario);
         
   
       });
