@@ -18,4 +18,11 @@ div{
   height: 30px;
 }
 
+ion-title{
+  font-family: Monotype Corsiva;
+  font-size: 22px;
+}
 
+ion-content {
+  --background: rgb(223, 223, 223) no-repeat center center / cover !important;
+}
