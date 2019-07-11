@@ -53,6 +53,7 @@ export class ChatNutriPage implements OnInit {
 
           doc.docChanges().forEach(c =>{
             let m = new Mensagem();
+           
             m.setDados(c.doc.data());
             this.conversa.push(m);
           })
@@ -85,7 +86,8 @@ export class ChatNutriPage implements OnInit {
 
     this.formGroup = this.formBuilder.group({
       data : [ new Date()],
-      mensagem : [this.txtarea.value]
+      mensagem : [this.txtarea.value],
+      idSender : [this.idUsuario]
    });
 
 

@@ -7,21 +7,34 @@
     margin-right: 300px; 
   }
 
-  .balao{
-    background:#00FF00;
-    padding: 10px;
-    position: fixed;
+  .balao {
+    font-family: 'open sans';
+    font-size: .85em;
+    margin: 0 auto; 
+    background: #000;
+    border-radius: 0 30px 30px 0;
     width: 300px;
-    z-index: 5;
-  }
-  .balao:before{
-    content: '';
+    height: 100px;
+    color: #fff;
+    text-align: center;
+    background-color: #5e35b1;
+  
+    position: relative;
+    margin-bottom: 1em;
+}
+.balao:after{
+    content: "";
+    width: 0; 
+    height: 0;
+
     position: absolute;
-    width: 15px;
-    height: 15px;
-    left: -8px;
-    top: 20px;
-    background: #00FF00;
-    z-index: 1;
-    -webkit-transform: rotate(45deg);
-  }
+
+    right: -32px;
+
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+    border-left: 50px solid #5e35b1; 
+   
+    border-radius: 50%;
+
+}

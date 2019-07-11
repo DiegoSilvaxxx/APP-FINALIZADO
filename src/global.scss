@@ -13,7 +13,7 @@
 :root{
     .menu-lateral{
         --background: none;
-        background-image: url('assets/imagens/menu.jpg');
+        background-color: #F8F8FF;
         background-position: center center;
        
     }
@@ -26,10 +26,7 @@
     }
     .menu-lateral ion-item, .menu-lateral ion-menu-toggle,  .menu-lateral ion-list{
         --background: none !important;
-        background-image: url('assets/imagens/fundot.png')  !important;
- 
-
-
+        background-color: #F8F8FF;
         
     } 
 }
