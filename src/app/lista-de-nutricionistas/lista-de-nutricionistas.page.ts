@@ -12,10 +12,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ListaDeNutricionistasPage implements OnInit {
 
+  idUsuario : string;
   listaDeNutricionistas: Nutricionista[] = [];
   firestore = firebase.firestore();
   settings = { timestampsInSnapshots: true };
 
+  idList : String[] = [];
+  
   constructor(public router: Router, public loadingController: LoadingController) {
 
   }
@@ -38,24 +41,25 @@ export class ListaDeNutricionistasPage implements OnInit {
   }
 
   getList() {
-    var ref = firebase.firestore().collection("nutricionista")
     
-    ref.get().then(query => {
-      query.forEach(doc => {
-        let c = new Nutricionista();
-        c.setDados(doc.data());
-        c.id = doc.id;
+    var ref = firebase.firestore().collection("mensagem").doc(this.idUsuario);
+    ref.get().then(doc => {
 
-        let ref = firebase.storage().ref().child(`nutri/${doc.id}.jpg`).getDownloadURL().then(url => {
-          c.imagem = url;
 
-          this.listaDeNutricionistas.push(c);
-        })
-        .catch(err=>{
-         this.listaDeNutricionistas.push(c);
-         })
-      });
-    });
+       if(doc.exists){
+
+        doc.data().mensagens.forEach(element => {
+          console.log(element);
+          this.idList.push(element);
+        });
+       
+      
+       }
+        
+      }).catch(err=>{
+        console.log("erro 1")
+      })
+   
   }
 
   Home() {
