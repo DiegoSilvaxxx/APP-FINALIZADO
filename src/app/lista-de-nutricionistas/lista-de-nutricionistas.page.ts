@@ -42,23 +42,19 @@ export class ListaDeNutricionistasPage implements OnInit {
 
   getList() {
     
-    var ref = firebase.firestore().collection("mensagem").doc(this.idUsuario);
+    var ref = firebase.firestore().collection("nutricionista")
     ref.get().then(doc => {
 
+      doc.forEach(item =>{
+        let n = new Nutricionista();
+        n.id = item.id;
+        n.setDados(n);
+        this.listaDeNutricionistas.push(n);
+      });
 
-       if(doc.exists){
-
-        doc.data().mensagens.forEach(element => {
-          console.log(element);
-          this.idList.push(element);
-        });
-       
-      
-       }
-        
-      }).catch(err=>{
-        console.log("erro 1")
-      })
+      console.log(this.listaDeNutricionistas);
+    
+       });
    
   }
 

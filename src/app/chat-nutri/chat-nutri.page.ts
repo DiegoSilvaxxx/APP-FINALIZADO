@@ -48,20 +48,21 @@ export class ChatNutriPage implements OnInit {
 
     
 
-    let ref = this.firestore.doc('mensagem/'+this.idUsuario).collection(this.idNutricionista);
+    let ref = this.firestore.collection('usuario').doc(this.idUsuario).collection("mensagem");
         ref.onSnapshot(doc=> {
 
           doc.docChanges().forEach(c =>{
-            let m = new Mensagem();
-           
-            m.setDados(c.doc.data());
-            this.conversa.push(m);
+            
+              if(c.doc.data().para==this.idNutricionista || c.doc.data().de==this.idNutricionista){
+                let m = new Mensagem();
+              
+                m.setDados(c.doc.data());
+                this.conversa.push(m);
+              }
           })
 
-         
         });
 
-    
   }
 
 
@@ -87,25 +88,31 @@ export class ChatNutriPage implements OnInit {
     this.formGroup = this.formBuilder.group({
       data : [ new Date()],
       mensagem : [this.txtarea.value],
-      idSender : [this.idUsuario]
+      de : [this.idUsuario],
+      para : [this.idNutricionista],
+
    });
 
 
-   let ref = this.firestore.doc('mensagem/'+this.idUsuario).collection(this.idNutricionista).add(this.formGroup.value)
+   let ref = this.firestore.collection('usuario').doc(this.idUsuario).collection("mensagem").add(this.formGroup.value)
    .then(resp=>{
       console.log('Cadastrado com sucesso');
-      this.firestore.doc('mensagem/'+this.idNutricionista).collection(this.idUsuario).add(this.formGroup.value)
-      
-   .then(resp=>{
-      console.log('Cadastrado com sucesso');
+      this.enviarNutricionista();
     }).catch(function(){
       console.log('Erro ao cadastrar');
     })
 
-    }).catch(function(){
-      console.log('Erro ao cadastrar');
-    })
+  }
 
+  enviarNutricionista(){
+
+
+    let ref = this.firestore.collection('nutricionista').doc(this.idNutricionista).collection("mensagem").add(this.formGroup.value)
+    .then(resp=>{
+       console.log('Cadastrado com sucesso');
+     }).catch(function(){
+       console.log('Erro ao cadastrar');
+     })
   }
 
   Home() {
