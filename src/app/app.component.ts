@@ -49,16 +49,19 @@ export class AppComponent {
     this.firebaseauth.authState
     .subscribe(
       user => {
-        if (user) {
-          this.router.navigate(['/list']);
-          } else {
-            this.router.navigate(['/home']);
-          }
+        if (!user) {
+
+          this.router.navigate(['/home']);
+        }
       },
       () => {
-        this.router.navigate(['/list']);
+       // this.router.navigate(['/list']);
       }
     );
 
-  }
+}
+
+Perfil() {
+  this.router.navigate(['/perfil']);
+}
 }

@@ -24,6 +24,10 @@ const routes: Routes = [
   { path: 'lista-de-nutricionistas', loadChildren: './lista-de-nutricionistas/lista-de-nutricionistas.module#ListaDeNutricionistasPageModule' },
   { path: 'perfil-nutri', loadChildren: './perfil-nutri/perfil-nutri.module#PerfilNutriPageModule' },
   { path: 'chat-nutri', loadChildren: './chat-nutri/chat-nutri.module#ChatNutriPageModule' },
+  { path: 'cadastroperfil', loadChildren: './cadastroperfil/cadastroperfil.module#CadastroperfilPageModule' },
+  { path: 'perfil', loadChildren: './perfil/perfil.module#PerfilPageModule' },
+  { path: 'perfil-view', loadChildren: './perfil-view/perfil-view.module#PerfilViewPageModule' },
+
 
 ];
 

@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Atualizar Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <img src="{{imagem}}">
+  <ion-item>
+      <input type="file" (change)="enviaArquivo($event)" />
+    </ion-item>
+  </ion-card>
+
+  <form [formGroup]="formGroup">
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating>Nome: </ion-label>
+        <ion-input formControlName="nome" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Sobrenome: </ion-label>
+        <ion-input formControlName="sobrenome" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Celular:</ion-label>
+        <ion-input formControlName="cel" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Cidade:</ion-label>
+        <ion-input formControlName="cidade" type="text"></ion-input>
+      </ion-item>
+
+      
+
+    </ion-list>
+  </form>
+  <ion-row align-items-center>
+    <ion-col>
+      <ion-button type="submit" color="primary" (click)="cancelar()">Cancelar</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button type="submit" color="success" (click)="atualizarperfil()">Atualizar</ion-button>
+    </ion-col>
+
+  </ion-row>
+
+</ion-content>
