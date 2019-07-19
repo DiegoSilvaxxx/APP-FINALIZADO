@@ -3,6 +3,7 @@ export class Perfil{
     id : string;
     nome: string
     sobrenome:  string;
+    telefone: string;
     cel: string;;
     cidade: string;
     imagem : string;
@@ -15,6 +16,7 @@ export class Perfil{
        this.id = obj.id;
         this.nome = obj.nome;
         this.sobrenome = obj.sobrenome;
+        this.telefone = obj.telefone;
         this.cel = obj.cel;
         this.cidade = obj.cidade;
     

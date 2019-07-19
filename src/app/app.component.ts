@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   public appPages = [
     {
-      title: 'home',
+      title: 'Inicio',
       url: '/list',
       icon: 'home'
     },

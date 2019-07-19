@@ -36,6 +36,10 @@ export class ListPage implements OnInit {
 
   }
 
+  Perfil() {
+    this.router.navigate(['/perfil']);
+  }
+
   ListaDeNutricionistas(){
     this.router.navigate(['/lista-de-nutricionistas'])
   }

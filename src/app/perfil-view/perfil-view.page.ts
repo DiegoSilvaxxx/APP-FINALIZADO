@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class PerfilViewPage implements OnInit {
 
-  idUsuario: string;
+  id: string;
   usuarioEmail: string;
   perfil: Perfil = new Perfil();
   firestore = firebase.firestore();
@@ -30,10 +30,10 @@ export class PerfilViewPage implements OnInit {
 
     this.form();
     this.firebaseauth.authState.subscribe(obj => {
-      this.idUsuario = this.firebaseauth.auth.currentUser.uid;
+      this.id = this.firebaseauth.auth.currentUser.uid;
       this.usuarioEmail = this.firebaseauth.auth.currentUser.email;
 
-      let ref = this.firestore.collection('cliente').doc(this.idUsuario)
+      let ref = this.firestore.collection('perfil').doc(this.id)
       ref.get().then(doc => {
         console.log(doc.data())
 
@@ -41,6 +41,7 @@ export class PerfilViewPage implements OnInit {
 
         this.formGroup.controls['nome'].setValue(this.perfil.nome);
         this.formGroup.controls['sobrenome'].setValue(this.perfil.sobrenome);
+        this.formGroup.controls['telefone'].setValue(this.perfil.telefone);
         this.formGroup.controls['cel'].setValue(this.perfil.cel);
         this.formGroup.controls['cidade'].setValue(this.perfil.cidade);
       });
@@ -52,6 +53,7 @@ export class PerfilViewPage implements OnInit {
     this.formGroup = this.formBuilder.group({
       nome: [],
       sobrenome: [],
+      telefone: [],
       cel: [],
       cidade: [],
 
@@ -64,18 +66,15 @@ export class PerfilViewPage implements OnInit {
 
   atualizarperfil() {
     console.log(this.formGroup.value)
-    console.log(this.idUsuario)
+    console.log(this.id)
 
-
-    
     let ref = this.firestore.collection('perfil')
-    ref.doc(this.idUsuario).set(this.formGroup.value)
+    ref.doc(this.id).set(this.formGroup.value)
       .then(() => {
-        //this.toast('Atualizado com Sucesso');
-        //this.router.navigate(['perfil']);
-        //this.loadingController.dismiss();
+        this.toast('Atualizado com Sucesso');
+        this.router.navigate(['/perfil']);
       }).catch(() => {
-        //this.toast('Erro ao Atualizar')
+        this.toast('Erro ao Atualizar')
       }) 
   }
 
@@ -103,7 +102,7 @@ export class PerfilViewPage implements OnInit {
   enviaArquivo(event) {
     let imagem = event.srcElement.files[0];
     let ref = firebase.storage().ref()
-      .child(`perfil/${this.idUsuario}.jpg`);
+      .child(`perfil/${this.id}.jpg`);
 
     ref.put(imagem).then(url => {
       this.downloadFoto();
@@ -112,7 +111,7 @@ export class PerfilViewPage implements OnInit {
 
   downloadFoto() {
     let ref = firebase.storage().ref()
-      .child(`perfil/${this.idUsuario}.jpg`);
+      .child(`perfil/${this.id}.jpg`);
 
     ref.getDownloadURL().then(url => {
       this.imagem = url;

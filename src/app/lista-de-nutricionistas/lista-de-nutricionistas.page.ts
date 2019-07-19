@@ -58,6 +58,10 @@ export class ListaDeNutricionistasPage implements OnInit {
    
   }
 
+  Perfil() {
+    this.router.navigate(['/perfil']);
+  }
+
   Home() {
     this.router.navigate(['/list']);
   }

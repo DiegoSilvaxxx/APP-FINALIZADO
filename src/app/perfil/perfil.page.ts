@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 import { Perfil } from '../model/perfil';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -10,12 +10,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./perfil.page.scss'],
 })
 export class PerfilPage implements OnInit {
-  ngOnInit() {
 
-  }
-  
-  idUsuario: string;
-  usuarioEmail:string;
+  usuarioEmail: string;
+  id: string;
   perfil: Perfil = new Perfil();
   picture: string = "../../assets/imagens/1.gif";
 
@@ -23,21 +20,24 @@ export class PerfilPage implements OnInit {
   settings = { timestampsInSnapshots: true }
 
 
-  constructor(public firebaseauth: AngularFireAuth,
+  constructor(public activatedRoute: ActivatedRoute,
+    public firebaseauth: AngularFireAuth,
     public router: Router,
     public fire: AngularFireAuth) {
 
+    this.id = this.activatedRoute.snapshot.paramMap.get('perfil');
+
     this.firebaseauth.authState.subscribe(obj => {
 
-      this.idUsuario = this.firebaseauth.auth.currentUser.uid;
+      this.id = this.firebaseauth.auth.currentUser.uid;
       this.usuarioEmail = this.firebaseauth.auth.currentUser.email;
 
       this.downloadFoto();
 
-      let ref = this.firestore.collection('cliente').doc(this.idUsuario)
+      let ref = this.firestore.collection('perfil').doc(this.id)
       ref.get().then(doc => {
-        this.perfil.id = doc.id;
         this.perfil.setDados(doc.data());
+        this.perfil.id = doc.id;
         console.log(this.perfil);
 
       }).catch(err => {
@@ -46,18 +46,21 @@ export class PerfilPage implements OnInit {
 
     });
   }
-  
+
+  ngOnInit() {
+
+  }
 
   downloadFoto() {
     let ref = firebase.storage().ref()
-      .child(`perfil/${this.idUsuario}.jpg`);
+      .child(`perfil/${this.id}.jpg`);
 
     ref.getDownloadURL().then(url => {
       this.picture = url;
     })
   }
 
-  cancelar() {
+  deslogar() {
     this.fire.auth.signOut().then(() => {
       this.router.navigate(['/home']);
     }).catch(() => {
@@ -72,4 +75,5 @@ export class PerfilPage implements OnInit {
   Home() {
     this.router.navigate(['/list']);
   }
+
 }

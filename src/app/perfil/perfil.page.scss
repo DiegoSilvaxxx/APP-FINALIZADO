@@ -10,11 +10,13 @@ input[type='file'] {
   }
 
   .perfil{
-    height: 110px;
-    width: 110px;
+    height: 250px;
+    width: 250px;
     margin-left: auto;
     margin-right: auto;
     border-radius: 50%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .tags{
@@ -28,21 +30,17 @@ text-align: center;
   height: 30px;
 
 }
-ion-card-subtitle{
-  color: white;
-  font-size: 18px;
+ion-card{
+  font-size: 27px;
   text-align: center;
-}
-ion-title{
-  margin-left: 120px;
+  background-color: rgba(221, 221, 221, 0.596);
+  margin-top: 60px;
 }
 
 .config{
- 
   width: 50px;
   height: 30px;
   
- 
 }
 .contato{
   margin-left: 90px;
@@ -51,5 +49,47 @@ ion-button{
   margin-left: 110px;
 }
 ion-content{
-  background-color: black;
+  background-color: #000;
 }
+
+.cor{
+  font-family: FreeMono, monospace;
+  font-size: 20px;
+  text-align: center;
+}
+
+.cor1{
+  font-family: FreeMono, monospace;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.cor2{
+  font-family: FreeMono, monospace;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.cor4{
+  font-family: FreeMono, monospace;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.t{
+  font-family: FreeMono, monospace;
+  font-size: 28px;
+  text-align: center;
+  margin-top: 45px;
+}
+
+.titulo{
+  font-family: Monotype Corsiva;
+  font-size: 32px;
+  text-align: center;
+}
+
