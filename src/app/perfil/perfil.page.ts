@@ -40,9 +40,7 @@ export class PerfilPage implements OnInit {
         this.perfil.id = doc.id;
         console.log(this.perfil);
 
-      }).catch(err => {
-        console.log(err)
-      });
+      })
 
     });
   }

@@ -45,8 +45,8 @@ export class CadastroperfilPage implements OnInit {
   }
 
   entrar(){
-    let ref = this.firestore.collection('perfil')
-    ref.add(this.formGroup.value)
+    let ref = this.firestore.collection('perfil').doc(this.id)
+    ref.set(this.formGroup.value)
     .then(()=>{
       console.log('Entrada do Perfil com sucesso');
       this.router.navigate(['/perfil']);
