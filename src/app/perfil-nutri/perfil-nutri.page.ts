@@ -13,7 +13,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class PerfilNutriPage implements OnInit {
 
-  perfilNutri: Nutricionista = new Nutricionista();
+  Nutricionista: Nutricionista = new Nutricionista();
   id: string;
   firestore = firebase.firestore();
   settings = { timestampsInSnapshots: true };
@@ -36,8 +36,8 @@ export class PerfilNutriPage implements OnInit {
     var ref = firebase.firestore().collection("nutricionista").doc(this.id);
 
     ref.get().then(doc => {
-        this.perfilNutri.setDados(doc.data());
-        this.perfilNutri.id = doc.id;
+        this.Nutricionista.setDados(doc.data());
+        this.Nutricionista.id = doc.id;
         this.downloadFoto();
     }).catch(function (error) {
       console.log("Error getting document:", error);
@@ -55,7 +55,7 @@ export class PerfilNutriPage implements OnInit {
 
   downloadFoto() {
     let ref = firebase.storage().ref()
-      .child(`nutri/${this.id}.jpg`);
+      .child(`nutricionista/${this.id}.jpg`);
 
     ref.getDownloadURL().then(url => {
       this.imagem = url;

@@ -66,7 +66,6 @@ export class ListaDeNutricionistasPage implements OnInit {
     this.router.navigate(['/list']);
   }
 
-
   async presentLoading() {
     const loading = await this.loadingController.create({
       message: 'Carregando',

@@ -34,19 +34,16 @@ export class ChatNutriPage implements OnInit {
 
       this.idNutricionista = this.activatedRoute.snapshot.paramMap.get('nutricionista');
      
-
       this.firebaseauth.authState.subscribe(obj=>{
-        this.idUsuario = this.firebaseauth.auth.currentUser.uid;
+        this.idUsuario = this.firebaseauth.auth.currentUser.uid; 
+
         console.log(this.idUsuario);
         
-  
       });
 
     }
 
   ngOnInit() {
-
-    
 
     let ref = this.firestore.collection('usuario').doc(this.idUsuario).collection("mensagem");
         ref.onSnapshot(doc=> {
@@ -105,7 +102,6 @@ export class ChatNutriPage implements OnInit {
   }
 
   enviarNutricionista(){
-
 
     let ref = this.firestore.collection('nutricionista').doc(this.idNutricionista).collection("mensagem").add(this.formGroup.value)
     .then(resp=>{

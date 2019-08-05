@@ -5,7 +5,6 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 
-
 @Component({
   selector: 'app-cadastroperfil',
   templateUrl: './cadastroperfil.page.html',
@@ -45,7 +44,7 @@ export class CadastroperfilPage implements OnInit {
   }
 
   entrar(){
-    let ref = this.firestore.collection('perfil').doc(this.id)
+    let ref = this.firestore.collection('usuario').doc(this.id)
     ref.set(this.formGroup.value)
     .then(()=>{
       console.log('Entrada do Perfil com sucesso');

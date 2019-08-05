@@ -1,10 +1,10 @@
-export class Perfil{
+export class Usuario{
  
     id : string;
-    nome: string
-    sobrenome:  string;
+    nome: string;
+    sobrenome: string;
     telefone: string;
-    cel: string;;
+    cel: string;
     cidade: string;
     imagem : string;
    

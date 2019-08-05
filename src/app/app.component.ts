@@ -1,15 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import * as firebase from 'firebase';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Usuario } from './model/usuario';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  usuarioEmail: string;
+  id: string;
+  Usuario: Usuario = new Usuario();
+  picture: string = "../../assets/imagens/1.gif";
+
+  firestore = firebase.firestore();
+  settings = { timestampsInSnapshots: true }
+
   public appPages = [
     {
       title: 'Inicio',
@@ -33,10 +44,32 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private firebaseauth : AngularFireAuth,
-    private router : Router
+    private router : Router,
+    public activatedRoute: ActivatedRoute,
   ) {
+
     this.initializeApp();
+
+    this.id = this.activatedRoute.snapshot.paramMap.get('usuario');
+
+    this.firebaseauth.authState.subscribe(obj => {
+
+      this.id = this.firebaseauth.auth.currentUser.uid;
+      this.usuarioEmail = this.firebaseauth.auth.currentUser.email;
+
+      this.downloadFoto();
+
+      let ref = this.firestore.collection('usuario').doc(this.id)
+      ref.get().then(doc => {
+        this.Usuario.setDados(doc.data());
+        this.Usuario.id = doc.id;
+        console.log(this.Usuario);
+
+      })
+
+    });
   }
+
 
   initializeApp() {
     
@@ -60,7 +93,17 @@ export class AppComponent {
 
 }
 
+downloadFoto() {
+  let ref = firebase.storage().ref()
+    .child(`usuario/${this.id}.jpg`);
+
+  ref.getDownloadURL().then(url => {
+    this.picture = url;
+  })
+}
+
 Perfil() {
   this.router.navigate(['/perfil']);
 }
+
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Perfil } from '../model/perfil';
+import { Usuario } from '../model/usuario';
 import * as firebase from 'firebase';
 import { FormBuilder } from '@angular/forms';
 import { ToastController, LoadingController, NavController } from '@ionic/angular';
@@ -16,7 +16,7 @@ export class PerfilViewPage implements OnInit {
 
   id: string;
   usuarioEmail: string;
-  perfil: Perfil = new Perfil();
+  Usuario: Usuario = new Usuario();
   firestore = firebase.firestore();
   settings = { timestampsInSnapshots: true };
   formGroup: FormGroup;
@@ -33,17 +33,17 @@ export class PerfilViewPage implements OnInit {
       this.id = this.firebaseauth.auth.currentUser.uid;
       this.usuarioEmail = this.firebaseauth.auth.currentUser.email;
 
-      let ref = this.firestore.collection('perfil').doc(this.id)
+      let ref = this.firestore.collection('usuario').doc(this.id)
       ref.get().then(doc => {
         console.log(doc.data())
 
-        this.perfil.setDados(doc.data());
+        this.Usuario.setDados(doc.data());
 
-        this.formGroup.controls['nome'].setValue(this.perfil.nome);
-        this.formGroup.controls['sobrenome'].setValue(this.perfil.sobrenome);
-        this.formGroup.controls['telefone'].setValue(this.perfil.telefone);
-        this.formGroup.controls['cel'].setValue(this.perfil.cel);
-        this.formGroup.controls['cidade'].setValue(this.perfil.cidade);
+        this.formGroup.controls['nome'].setValue(this.Usuario.nome);
+        this.formGroup.controls['sobrenome'].setValue(this.Usuario.sobrenome);
+        this.formGroup.controls['telefone'].setValue(this.Usuario.telefone);
+        this.formGroup.controls['cel'].setValue(this.Usuario.cel);
+        this.formGroup.controls['cidade'].setValue(this.Usuario.cidade);
       });
 
     });
@@ -68,7 +68,7 @@ export class PerfilViewPage implements OnInit {
     console.log(this.formGroup.value)
     console.log(this.id)
 
-    let ref = this.firestore.collection('perfil')
+    let ref = this.firestore.collection('usuario')
     ref.doc(this.id).set(this.formGroup.value)
       .then(() => {
         this.toast('Atualizado com Sucesso');
@@ -102,7 +102,7 @@ export class PerfilViewPage implements OnInit {
   enviaArquivo(event) {
     let imagem = event.srcElement.files[0];
     let ref = firebase.storage().ref()
-      .child(`perfil/${this.id}.jpg`);
+      .child(`usuario/${this.id}.jpg`);
 
     ref.put(imagem).then(url => {
       this.downloadFoto();
@@ -111,7 +111,7 @@ export class PerfilViewPage implements OnInit {
 
   downloadFoto() {
     let ref = firebase.storage().ref()
-      .child(`perfil/${this.id}.jpg`);
+      .child(`usuario/${this.id}.jpg`);
 
     ref.getDownloadURL().then(url => {
       this.imagem = url;
