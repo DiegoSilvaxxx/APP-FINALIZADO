@@ -45,7 +45,7 @@ export class ChatNutriPage implements OnInit {
 
   ngOnInit() {
 
-    let ref = this.firestore.collection('usuario').doc(this.idUsuario).collection("mensagem");
+    let ref = this.firestore.collection('usuario').doc(this.idUsuario).collection("mensagem").orderBy("data", "asc");
         ref.onSnapshot(doc=> {
 
           doc.docChanges().forEach(c =>{

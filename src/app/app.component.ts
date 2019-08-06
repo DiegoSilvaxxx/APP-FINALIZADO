@@ -11,7 +11,7 @@ import { Usuario } from './model/usuario';
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   usuarioEmail: string;
   id: string;

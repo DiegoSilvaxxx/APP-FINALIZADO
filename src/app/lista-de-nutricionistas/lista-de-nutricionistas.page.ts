@@ -46,10 +46,15 @@ export class ListaDeNutricionistasPage implements OnInit {
     ref.get().then(doc => {
 
       doc.forEach(item =>{
+
         let n = new Nutricionista();
         n.id = item.id;
-        n.setDados(n);
-        this.listaDeNutricionistas.push(n);
+
+        var ref = firebase.firestore().collection("nutricionista").doc(n.id).get().then(doc =>{
+          n.nome = doc.data().nome;
+          n.setDados(n);
+          this.listaDeNutricionistas.push(n);
+        });
       });
 
       console.log(this.listaDeNutricionistas);
