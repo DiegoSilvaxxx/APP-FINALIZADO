@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import * as firebase from 'firebase';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Usuario } from '../model/usuario';
 
 @Component({
   selector: 'app-list',
@@ -8,6 +11,14 @@ import { Router } from '@angular/router';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
+
+  id: string;
+  Usuario: Usuario = new Usuario();
+  picture: string = "../../assets/imagens/1.gif";
+
+  firestore = firebase.firestore();
+  settings = { timestampsInSnapshots: true }
+
   private selectedItem: any;
   private icons = [
     'flask',
@@ -22,7 +33,7 @@ export class ListPage implements OnInit {
     'build'
   ];
   public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor(public navctrl : NavController, public router : Router) {
+  constructor(public navctrl : NavController, public router : Router, private firebaseauth : AngularFireAuth,) {
     for (let i = 1; i < 11; i++) {
       this.items.push({
         title: 'Item ' + i,
@@ -30,6 +41,18 @@ export class ListPage implements OnInit {
         icon: this.icons[Math.floor(Math.random() * this.icons.length)]
       });
     }
+      this.firebaseauth.authState.subscribe(obj => {
+
+        this.id = this.firebaseauth.auth.currentUser.uid;
+  
+        this.downloadFoto();
+  
+        let ref = this.firestore.collection('usuario').doc(this.id)
+        ref.get().then(doc => {
+          this.Usuario.setDados(doc.data());
+          this.Usuario.id = doc.id;
+        })
+      });
   }
 
   ngOnInit() {
@@ -38,6 +61,15 @@ export class ListPage implements OnInit {
 
   Perfil() {
     this.router.navigate(['/perfil']);
+  }
+
+  downloadFoto() {
+    let ref = firebase.storage().ref()
+      .child(`usuario/${this.id}.jpg`);
+  
+    ref.getDownloadURL().then(url => {
+      this.picture = url;
+    })
   }
 
   ListaDeNutricionistas(){

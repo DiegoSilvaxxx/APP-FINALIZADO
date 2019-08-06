@@ -4,6 +4,8 @@ import * as firebase from 'firebase';
 import { NavParams, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { Usuario } from '../model/usuario';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-lista-de-nutricionistas',
@@ -12,14 +14,30 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ListaDeNutricionistasPage implements OnInit {
 
-  idUsuario : string;
+  id: string;
+  Usuario: Usuario = new Usuario();
+  picture: string = "../../assets/imagens/1.gif";
+
   listaDeNutricionistas: Nutricionista[] = [];
   firestore = firebase.firestore();
   settings = { timestampsInSnapshots: true };
 
   idList : String[] = [];
   
-  constructor(public router: Router, public loadingController: LoadingController) {
+  constructor(public router: Router, public loadingController: LoadingController, private firebaseauth : AngularFireAuth,) {
+
+    this.firebaseauth.authState.subscribe(obj => {
+
+      this.id = this.firebaseauth.auth.currentUser.uid;
+
+      this.downloadFoto();
+
+      let ref = this.firestore.collection('usuario').doc(this.id)
+      ref.get().then(doc => {
+        this.Usuario.setDados(doc.data());
+        this.Usuario.id = doc.id;
+      })
+    });
 
   }
 
@@ -38,6 +56,15 @@ export class ListaDeNutricionistasPage implements OnInit {
 
   perfilNutri(obj: Nutricionista) {
     this.router.navigate(['/perfil-nutri', { 'nutricionista': obj.id }]);
+  }
+
+  downloadFoto() {
+    let ref = firebase.storage().ref()
+      .child(`usuario/${this.id}.jpg`);
+  
+    ref.getDownloadURL().then(url => {
+      this.picture = url;
+    })
   }
 
   getList() {
