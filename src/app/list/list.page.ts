@@ -76,6 +76,15 @@ export class ListPage implements OnInit {
     this.router.navigate(['/lista-de-nutricionistas'])
   }
 
+  Treino(){
+    this.router.navigate(['/treino'])
+  }
+
+  HomeCm() {
+    this.router.navigate(['/lista-de-pratos']);
+  }
+
+
   cadastrar(){
     
     this.router.navigate(['/lista-de-clientes', { id: '12' }]);

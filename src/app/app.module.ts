@@ -14,6 +14,7 @@ import {AngularFireAuth } from 'angularfire2/auth';
 import {AngularFirestoreModule } from 'angularfire2/firestore';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { IonicStorageModule } from '@ionic/storage';
+import { StorageService } from './service/storage.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,6 +31,7 @@ import { IonicStorageModule } from '@ionic/storage';
     StatusBar,
     SplashScreen,
     AngularFireAuth,
+    StorageService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
