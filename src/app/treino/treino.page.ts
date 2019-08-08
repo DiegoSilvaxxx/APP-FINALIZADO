@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Usuario } from '../model/usuario';
-import firebase from 'firebase';
+
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-treino',
