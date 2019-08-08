@@ -21,22 +21,17 @@
 
       <div *ngFor="let msg of conversa">
 
-        <div class="sender">
+        <ion-grid>
 
-          <ion-grid>
-            <ion-row>
-              <ion-col col-2 text-left>
-
-              </ion-col>
-              <ion-col col-10>
-
-                <p>{{msg.mensagem}}</p>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
+        <div class="sender1" *ngIf="msg.idSender == idUsuario">
+          <p class="sender12">{{msg.mensagem}}</p>
         </div>
 
+        <div class="sender2" *ngIf="msg.idSender != idUsuario">
+          <p>{{msg.mensagem}}</p>
+        </div>
 
+        </ion-grid>
       </div>
 
 
